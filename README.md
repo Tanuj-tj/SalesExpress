@@ -11,6 +11,15 @@
 ### Models
 
 * customers 
-    * Customers
+    * Customer
         * name
         * logo
+
+* Products 
+    * product
+        * name
+        * image
+        * price
+        * created
+        * uploaded
+
