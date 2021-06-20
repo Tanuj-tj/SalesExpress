@@ -6,6 +6,7 @@ from products.models import Product
 from customers.models import Customer
 from profiles.models import Profile
 from django.utils import timezone
+from sales.utils import generate_code 
 
 class Position(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -32,7 +33,7 @@ class Sale(models.Model):
 
     def save(self, *args, **kwargs):
         if self.transaction_id == "":
-            self.transaction_id = ''
+            self.transaction_id = generate_code()
 
         if self.created is None:
             self.created = timezone.now()
