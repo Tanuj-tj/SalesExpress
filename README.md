@@ -1,5 +1,7 @@
 # SalesExpress
 
+> Based on MVC (Model view controle (Template) ) Architecture  
+
 ### Apps :
 
 * sales
