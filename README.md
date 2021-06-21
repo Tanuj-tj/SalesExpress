@@ -15,7 +15,7 @@
         * name
         * logo
 
-* Products 
+* products 
     * product
         * name
         * image
@@ -24,7 +24,7 @@
         * uploaded
 
 
-* Profils
+* profils
     * profile
         * user
         * bio
@@ -32,7 +32,7 @@
         * created
         * updated
 
-* Sales
+* sales
     * Position
         * product
         * quanity 
@@ -54,9 +54,25 @@
         * created
         * uploaded
 
-#### signals.py : Used to set communication between models
-* Here the sender will be the user it will inform the profile which will be the receiver that the user instance has been created and the profile will be created for the this user . 
+* report
+    * Repost
+        * name
+        * image
+        * remark
+        * author
+        * created
+        * uploaded
+        
 
+#### signals.py : Used to set communication between models
+
+* profiles
+    * post_save_create_profile 
+        * Here the sender will be the user it will inform the profile which will be the receiver that the user instance has been created and the profile will be created for the this user . 
+
+* sales
+    * calculate_total_price
+        * Getting the total price from Position module of position app
 
 #### utils.py
 * Helper function inside sales 
