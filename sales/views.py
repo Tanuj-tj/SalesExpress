@@ -13,6 +13,7 @@ def home_view(request):
     positions_df = None
     merged_df = None
     df = None
+    chart = None
 
     form = SalesSearchForm(request.POST or None)
     
@@ -66,6 +67,7 @@ def home_view(request):
         'positions_df':positions_df,
         'merged_df':merged_df,
         'df':df,
+        'chart':chart
     }
 
     return render(request, 'sales/home.html' , context)

@@ -83,3 +83,6 @@
 #### Displaying graphs on browser
 
 ![Capture](https://user-images.githubusercontent.com/63875409/123299807-836fec80-d537-11eb-84dd-b784c28027bf.PNG)
+
+#### defer Attribute
+* Telling the browser to wait for the execution of this script until the page is loaded
