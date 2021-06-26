@@ -15,5 +15,6 @@ if (img){
 
 reportBtn.addEventListener('click', ()=>{
     console.log('clicked')
-    modalBody.append(img)
+    img.setAttribute('class', 'w-100')
+    modalBody.prepend(img)
 } )
