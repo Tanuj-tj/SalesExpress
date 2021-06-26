@@ -15,6 +15,7 @@ def home_view(request):
     merged_df = None
     df = None
     chart = None
+    no_data = None
 
     search_form = SalesSearchForm(request.POST or None)
 
@@ -24,6 +25,7 @@ def home_view(request):
         date_from = request.POST.get('date_from')
         date_to = request.POST.get('date_to')
         chart_type = request.POST.get('chart_type')
+        results_by = request.POST.get('results_by')
 
         #print(date_from,date_to,chart_type)
     
@@ -52,7 +54,7 @@ def home_view(request):
             
             df = merged_df.groupby('transaction_id', as_index=False)['price'].agg('sum')
             
-            chart = get_chart(chart_type, df, labels=df['transaction_id'].values)
+            chart = get_chart(chart_type, sales_df, results_by)
         
             sales_df = sales_df.to_html()
             positions_df = positions_df.to_html()
@@ -60,7 +62,7 @@ def home_view(request):
             df = df.to_html()
         
         else:
-            print("No data")
+            no_data = 'No data is available in this date range'
         
         
 
@@ -71,7 +73,8 @@ def home_view(request):
         'positions_df':positions_df,
         'merged_df':merged_df,
         'df':df,
-        'chart':chart
+        'chart':chart,
+        'no_data':no_data,
     }
 
     return render(request, 'sales/home.html' , context)
