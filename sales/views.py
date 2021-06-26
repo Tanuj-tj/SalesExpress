@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from sales.models import Position, Sale
 from sales.forms import SalesSearchForm
+from reports.forms import ReprotForm
 import pandas as pd
 from sales.utils import get_customer_from_id , get_salesman_from_id,  get_chart
 
@@ -15,7 +16,9 @@ def home_view(request):
     df = None
     chart = None
 
-    form = SalesSearchForm(request.POST or None)
+    search_form = SalesSearchForm(request.POST or None)
+
+    report_form = ReprotForm()
     
     if request.method == 'POST':
         date_from = request.POST.get('date_from')
@@ -50,7 +53,7 @@ def home_view(request):
             df = merged_df.groupby('transaction_id', as_index=False)['price'].agg('sum')
             
             chart = get_chart(chart_type, df, labels=df['transaction_id'].values)
-
+        
             sales_df = sales_df.to_html()
             positions_df = positions_df.to_html()
             merged_df = merged_df.to_html()
@@ -62,7 +65,8 @@ def home_view(request):
         
 
     context = { 
-        'form':form,
+        'search_form':search_form,
+        'report_form':report_form,
         'sales_df':sales_df,
         'positions_df':positions_df,
         'merged_df':merged_df,
